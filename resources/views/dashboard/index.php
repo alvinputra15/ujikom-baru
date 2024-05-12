@@ -1,3 +1,5 @@
+@extends('layout.tamplate')
+@section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12">
@@ -165,10 +167,10 @@
                   <div class="pl-5">
                     <div class="mb-3"><strong>@Hester Nissim</strong><span class="text-muted small mx-2">has upload new files to</span><strong>Tiny Admin</strong></div>
                     <div class="row mb-3">
-                      <div class="col"><img src="./assets/products/p1.jpg" alt="..." class="img-fluid rounded"></div>
-                      <div class="col"><img src="./assets/products/p2.jpg" alt="..." class="img-fluid rounded"></div>
-                      <div class="col"><img src="./assets/products/p3.jpg" alt="..." class="img-fluid rounded"></div>
-                      <div class="col"><img src="./assets/products/p4.jpg" alt="..." class="img-fluid rounded"></div>
+                      <div class="col"><img src="{{ asset('admin/assets/products/p1.jpg') }}}}" alt="..." class="img-fluid rounded"></div>
+                      <div class="col"><img src="{{ asset('admin/assets/products/p2.jpg') }}}}" alt="..." class="img-fluid rounded"></div>
+                      <div class="col"><img src="{{ asset('admin/assets/products/p3.jpg') }}}}" alt="..." class="img-fluid rounded"></div>
+                      <div class="col"><img src="{{ asset('admin/assets/products/p4.jpg') }}}}" alt="..." class="img-fluid rounded"></div>
                     </div>
                     <p class="small text-muted">Front-End Development <span class="badge badge-light">1h ago</span>
                     </p>
@@ -223,9 +225,9 @@
                   <div class="pl-5">
                     <div class="mb-3"><strong>@Lillith Joseph</strong><span class="text-muted small mx-2">has upload new files to</span><strong>Tiny Admin</strong></div>
                     <div class="row mb-3">
-                      <div class="col"><img src="./assets/products/p4.jpg" alt="..." class="img-fluid rounded"></div>
-                      <div class="col"><img src="./assets/products/p1.jpg" alt="..." class="img-fluid rounded"></div>
-                      <div class="col"><img src="./assets/products/p2.jpg" alt="..." class="img-fluid rounded"></div>
+                      <div class="col"><img src="{{ asset('admin/assets/products/p4.jpg') }}}}" alt="..." class="img-fluid rounded"></div>
+                      <div class="col"><img src="{{ asset('admin/assets/products/p1.jpg') }}}}" alt="..." class="img-fluid rounded"></div>
+                      <div class="col"><img src="{{ asset('admin/assets/products/p2.jpg') }}}}" alt="..." class="img-fluid rounded"></div>
                     </div>
                     <p class="small text-muted">Front-End Development <span class="badge badge-light">1h ago</span>
                     </p>
@@ -475,3 +477,5 @@
       </div>
     </div>
   </div>
+
+  @endsection

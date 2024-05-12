@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\back\userC;
 use App\Http\Controllers\SesiC;
 use Illuminate\Support\Facades\Route;
 

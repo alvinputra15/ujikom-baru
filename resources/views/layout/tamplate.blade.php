@@ -71,6 +71,18 @@
     <script src='{{ asset('admin/js/dropzone.min.js') }}'></script>
     <script src='{{ asset('admin/js/uppy.min.js') }}'></script>
     <script src='{{ asset('admin/js/quill.min.js') }}'></script>
+    <script src='{{ asset('admin/js/jquery.dataTables.min.js') }}'></script>
+    <script src='{{ asset('admin/js/dataTables.bootstrap4.min.js') }}'></script>
+    <script>
+        $('#dataTable-1').DataTable(
+        {
+          autoWidth: true,
+          "lengthMenu": [
+            [16, 32, 64, -1],
+            [16, 32, 64, "All"]
+          ]
+        });
+      </script>
     <script>
       $('.select2').select2(
       {
