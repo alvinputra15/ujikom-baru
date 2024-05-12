@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('landing/assets/css/odometer-theme-default.css') }}">
     <link rel="stylesheet" href="{{ asset('landing/assets/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('landing/assets/css/style.css') }}">
-	<title>Selfer - Personal Portfolio Template</title>
+	<title>Landing Page </title>
 
 </head>
 <body data-spy="scroll" data-target=".navbar" class="has-loading-screen">

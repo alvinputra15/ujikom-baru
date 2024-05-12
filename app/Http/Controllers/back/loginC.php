@@ -36,7 +36,7 @@ class loginC extends Controller
             } elseif ($user->level === 'petugas') {
                 return redirect()->route('petugas.index');
             } elseif ($user->level === 'user') {
-                return redirect()->route('user.index');
+                return redirect()->route('users.index');
             }
         }else{
             return redirect('login')->withErrors('Username dan password yang di masukan tidak sesuai')->withInput();

@@ -1,6 +1,6 @@
 @extends('layout.tamplate')
 @section('content')
-@section('title', 'User')
+@section('title', 'kelas')
 @include('layout.navbar')
 @include('layout.sidebar')
 <div class="container-fluid">
@@ -13,35 +13,30 @@
           <div class="col-md-12">
             <div class="card shadow">
               <div class="card-body">
-                <a  class="btn mb-2 btn-primary"  href="{{ route('user.tambah') }}">Tambah</a>
+                <a  class="btn mb-2 btn-primary"  href="{{ route('kelas.tambah') }}">Tambah</a>
                 <!-- table -->
                 <table class="table datatables" id="dataTable-1">
                   <thead>
                     <tr>
-                      <th>Nis</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Alamat</th>
-                      <th>Telepon</th>
-                      <th>Level</th>
-                      <th>Action</th>
+                      <th>No</th>
+                      <th>Kelas</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($user as $item)
+                    @foreach ($kelas as $item)
                     <tr>
-                        <td>{{ $item->nis }}</td>
-                        <td>{{ $item->name }}</td>
-                        <td>{{ $item->email }}</td>
-                        <td>{{ $item->alamat }}</td>
-                        <td>{{ $item->telepon }}</td>
-                        <td>{{ $item->level }}</td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->kelas }}</td>
+
                         <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="text-muted sr-only">Action</span>
                           </button>
                           <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{ route('user.edit', $item->id) }}">Edit</a>
-                            <a class="dropdown-item" href="#">Delete</a>
+                            <a class="dropdown-item" href="{{ route('kelas.edit', $item->id_kelas) }}">Edit</a>
+                            <form action="{{ route("kelas.delete",["id_kelas" => $item->id_kelas])}}" method="POST" class="dropdown-item">
+                                @csrf
+                                <button type="submit">Hapus</button>
+                            </form>
                           </div>
                         </td>
                       </tr>

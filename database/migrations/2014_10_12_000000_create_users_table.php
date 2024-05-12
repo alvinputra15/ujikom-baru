@@ -17,17 +17,11 @@ return new class extends Migration
             $table->string('name', 30);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->text('almat')->nullable();
+            $table->text('alamat')->nullable();
             $table->string('telepon', 12)->nullable();
-            $table->enum('level',[,'peugas','user','admin'])->default('user');
+            $table->enum('level',['petugas','user','admin'])->default('user');
             $table->string('foto_profile',100)->nullable();
             $table->string('password',100);
-<<<<<<< Updated upstream
-            $table->string('telepon', 12)->nullable();
-            $table->text('alamat')->nullable();
-            $table->enum('level',['petugas','user','admin'])->default('user');
-=======
->>>>>>> Stashed changes
             $table->rememberToken();
             $table->timestamps();
         });

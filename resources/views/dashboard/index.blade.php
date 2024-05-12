@@ -1,5 +1,8 @@
 @extends('layout.tamplate')
 @section('content')
+@section('title', 'Halaman utama')
+@include('layout.navbar')
+@include('layout.sidebar')
 <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12">
