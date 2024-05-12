@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\back\dashboardC;
+use App\Http\Controllers\back\loginC;
 use App\Http\Controllers\back\userC;
 use App\Http\Controllers\SesiC;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,28 +23,31 @@ Route::get('/', function () {
     return view('landing.index');
 });
 
+
 Route::middleware(['guest'])->group(function(){
-Route::get('/login', [SesiC::class, 'index'])->name('login');
-Route::post('/login', [SesiC::class, 'login'])->name('login.index');
+Route::get('/login', [loginC::class, 'index'])->name('login');
+Route::post('/login', [loginC::class, 'login'])->name('login.index');
 });
 
-    Route::get('/admin', [dashboardC::class, 'index'])->name('admin.index');
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/admin/koperasi', [dashboardC::class, 'admin'])->name('admin.index');
     Route::get('/petugas', [dashboardC::class, 'petugas'])->name('petugas.index');
     Route::get('/user', [dashboardC::class, 'user'])->name('user.index');
-    Route::get('/logout', [SesiC::class, 'logout'])->name('logout');
+    Route::get('/logout', [loginC::class, 'logout'])->name('logout');
 
     //user
     Route::get('/user', [userC::class, 'index'])->name('user.index');
     Route::get('/user/tambah', [userC::class, 'create'])->name('user.tambah');
     Route::get('/user/{id_user}', [userC::class, 'update'])->name('user.update');
-    Route::post('/user/store', [userC::class, 'store'])->name('user.store');
+    Route::post('/user/store', [login::class, 'store'])->name('user.store');
 
     //transaksi
     Route::get('/transaksi', [transaksi::class, 'index'])->name('transaksi.index');
     Route::get('/transaksi/tambah', [userC::class, 'create'])->name('transaksi.tambah');
     Route::get('/transaksi/{id_user}', [userC::class, 'update'])->name('transaksi.update');
     Route::post('/transaksi/store', [userC::class, 'store'])->name('transaksi.store');
-
+});
 
 
 Route::get('/pembayaranSpp', function () {

@@ -12,4 +12,5 @@ class userC extends Controller
         $user = User::get();
         return view('user.index', compact('user'));
     }
+
 }

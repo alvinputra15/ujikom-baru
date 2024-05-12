@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('foto_profile',100)->nullable();
             $table->string('password',100);
             $table->string('telepon', 12)->nullable();
-            $table->text('almat')->nullable();
-            $table->enum('level',[,'peugas','user','admin'])->default('user');
+            $table->text('alamat')->nullable();
+            $table->enum('level',['petugas','user','admin'])->default('user');
             $table->rememberToken();
             $table->timestamps();
         });
