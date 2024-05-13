@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\back\dashboardC;
+use App\Http\Controllers\back\HargaC;
 use App\Http\Controllers\back\KelasC;
 use App\Http\Controllers\back\loginC;
 use App\Http\Controllers\back\SettingC;
+use App\Http\Controllers\back\TransaksiC;
 use App\Http\Controllers\back\userC;
 use App\Http\Controllers\SesiC;
 use App\Http\Middleware\UserAkses;
@@ -42,6 +44,10 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/setting', [SettingC::class, 'index'])->name('setting.index');
     Route::post('/setting/update/{id_setting}', [SettingC::class, 'update'])->name('setting.update');
 
+    //spp
+    Route::get('/spp', [HargaC::class, 'index'])->name('spp.index');
+    Route::post('/spp/update/{id_spp}', [HargaC::class, 'update'])->name('spp.update');
+
     //user
     Route::get('/user', [userC::class, 'index'])->name('user.index');
     Route::get('/user/petugas', [userC::class, 'petugas'])->name('user.petugas');
@@ -63,10 +69,15 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/kelas/delete', [KelasC::class, 'delete'])->name('kelas.delete');
 
     //transaksi
-    Route::get('/transaksi', [transaksi::class, 'index'])->name('transaksi.index');
-    Route::get('/transaksi/tambah', [userC::class, 'create'])->name('transaksi.tambah');
-    Route::get('/transaksi/{id_user}', [userC::class, 'update'])->name('transaksi.update');
-    Route::post('/transaksi/store', [userC::class, 'store'])->name('transaksi.store');
+    Route::get('/bayar', [TransaksiC::class, 'index'])->name('bayar.spp');
+    Route::get('/bayar/{id}', [TransaksiC::class, 'history'])->name('history.spp');
+    Route::get('/bayar/tambah', [TransaksiC::class, 'create'])->name('bayar.tambah');
+    Route::get('/bayar/update/{id_transaksi}', [TransaksiC::class, 'update'])->name('bayar.update');
+    Route::get('/bayar/sukses/{id_transaksi}', [TransaksiC::class, 'sukses'])->name('transaksi.sukses');
+    Route::post('/bayar/store', [TransaksiC::class, 'store'])->name('bayar.store');
+    Route::post('/bayar/update/{id_transaksi}', [TransaksiC::class, 'update'])->name('bayar.update');
+    Route::get('/get-user-info/{id}', [userC::class,'getUserInfo'])->name('get.user.info');
+
 });
 
 

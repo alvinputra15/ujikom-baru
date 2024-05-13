@@ -153,5 +153,16 @@ class userC extends Controller
         }
     }
 
-
+    public function getUserInfo($id)
+    {
+        $user = User::find($id);
+        if($user){
+            return response()->json([
+                'telepon' => $user->telepon,
+                'email' => $user->email,
+                'alamat' => $user->alamat,
+            ]);
+        }
+        return response()->json(['error' => 'User not found.']);
+    }
 }

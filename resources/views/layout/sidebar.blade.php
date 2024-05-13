@@ -34,11 +34,28 @@
             <li class="nav-item">
               <a class="nav-link pl-3" href="{{ route('setting.index') }}"><span class="ml-1 item-text">Setting</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link pl-3" href="./dashboard-system.html"><span class="ml-1 item-text">Systems</span></a>
-            </li>
+  
           </ul>
+          <li class="nav-item">
+            <a href="{{route('spp.index')}}" class=" nav-link">
+              <i class="fe fe-dolars fe-16"></i>
+              <span class="ml-3 item-text">Harga Spp</span><span class="sr-only"></span>
+            </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('bayar.spp')}}" class=" nav-link">
+                <i class="fe fe-dolars fe-16"></i>
+                <span class="ml-3 item-text">Bayar Spp</span><span class="sr-only"></span>
+              </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('history.spp')}}" class=" nav-link">
+                  <i class="fe fe-dolars fe-16"></i>
+                  <span class="ml-3 item-text">history bayar spp</span><span class="sr-only"></span>
+                </a>
+                </li>
         </li>
+
       </ul>
       <p class="text-muted nav-heading mt-4 mb-1">
         <span>Components</span>
