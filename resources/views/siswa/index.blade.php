@@ -13,7 +13,9 @@
           <div class="col-md-12">
             <div class="card shadow">
               <div class="card-body">
+                @if (auth()->user()->level != 'user')
                 <a  class="btn mb-2 btn-primary"  href="{{ route('user.tambah') }}">Tambah</a>
+                @endif
                 <!-- table -->
                 <table class="table datatables" id="dataTable-1">
                   <thead>
@@ -36,14 +38,17 @@
                         <td>{{ $item->alamat }}</td>
                         <td>{{ $item->telepon }}</td>
                         <td>{{ $item->level }}</td>
+                        @if (auth()->user()->level != 'user')
                         <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="text-muted sr-only">Action</span>
                           </button>
+                      
                           <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{{ route('user.edit', $item->id) }}">Edit</a>
                             <a class="dropdown-item" href="#">Delete</a>
                           </div>
                         </td>
+                        @endif
                       </tr>
                     @endforeach
 

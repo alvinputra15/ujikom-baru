@@ -29,5 +29,5 @@ class Transaksi extends Model
         return $total;
     }
 
-    public function User(): BelongsTo{return $this->belongsTo(User::class, 'user_id', 'id_user');}
+    public function User(): BelongsTo{return $this->belongsTo(User::class, 'user_id', 'id');}
 }

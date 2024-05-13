@@ -22,38 +22,47 @@
             <span class="ml-3 item-text">Dashboard</span><span class="sr-only">(current)</span>
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="dashboard">
+            @if (auth()->user()->level != 'user')
             <li class="nav-item active">
+              
               <a class="nav-link pl-3" href="{{ route('user.petugas') }}"><span class="ml-1 item-text">Data Petugas</span></a>
             </li>
+            @endif
             <li class="nav-item">
               <a class="nav-link pl-3" href="{{ route('user.siswa') }}"><span class="ml-1 item-text">Data siswa</span></a>
             </li>
+            @if (auth()->user()->level != 'user')
             <li class="nav-item">
               <a class="nav-link pl-3" href="{{ route('kelas.index') }}"><span class="ml-1 item-text">Kelas</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link pl-3" href="{{ route('setting.index') }}"><span class="ml-1 item-text">Setting</span></a>
             </li>
-  
+            @endif
           </ul>
+          @if (auth()->user()->level != 'user')
           <li class="nav-item">
             <a href="{{route('spp.index')}}" class=" nav-link">
               <i class="fe fe-dolars fe-16"></i>
               <span class="ml-3 item-text">Harga Spp</span><span class="sr-only"></span>
             </a>
             </li>
+
             <li class="nav-item">
               <a href="{{route('bayar.spp')}}" class=" nav-link">
                 <i class="fe fe-dolars fe-16"></i>
                 <span class="ml-3 item-text">Bayar Spp</span><span class="sr-only"></span>
               </a>
               </li>
+              @endif
+              @if (auth()->user()->level == 'user')
               <li class="nav-item">
                 <a href="{{route('history.spp')}}" class=" nav-link">
                   <i class="fe fe-dolars fe-16"></i>
                   <span class="ml-3 item-text">history bayar spp</span><span class="sr-only"></span>
                 </a>
                 </li>
+              @endif
         </li>
 
       </ul>

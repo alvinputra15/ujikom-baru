@@ -70,7 +70,8 @@ Route::middleware(['auth'])->group(function(){
 
     //transaksi
     Route::get('/bayar', [TransaksiC::class, 'index'])->name('bayar.spp');
-    Route::get('/bayar/{id}', [TransaksiC::class, 'history'])->name('history.spp');
+    Route::get('/bayar/history', [TransaksiC::class, 'history'])->name('history.spp')->middleware('auth');
+
     Route::get('/bayar/tambah', [TransaksiC::class, 'create'])->name('bayar.tambah');
     Route::get('/bayar/update/{id_transaksi}', [TransaksiC::class, 'update'])->name('bayar.update');
     Route::get('/bayar/sukses/{id_transaksi}', [TransaksiC::class, 'sukses'])->name('transaksi.sukses');

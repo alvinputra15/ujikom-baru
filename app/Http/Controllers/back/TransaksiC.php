@@ -10,6 +10,7 @@ use App\Models\Transaksi;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -95,12 +96,17 @@ class TransaksiC extends Controller
         }
     }
 
-    public function history($id)
+    public function history()
     {
-        // Mengambil transaksi berdasarkan ID pengguna
-        $transaksi = Transaksi::where('id_user', $id)->get();
-    
-        // Mengirimkan data transaksi ke view
-        return view('nama_view', ['transaksi' => $transaksi]);
+$user = Auth::user(); // Get the currently authenticated user
+ 
+$transaksi = Transaksi::with('user')
+                      ->where('user_id', $user->id)
+                      ->orderBy('created_at', 'DESC')
+                      ->get();
+        
+            return view('transaksi.history', [
+                'transaksi' => $transaksi
+            ]);
     }
 }

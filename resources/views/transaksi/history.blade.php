@@ -13,8 +13,8 @@
           <div class="col-md-12">
             <div class="card shadow">
               <div class="card-body">
-                <a  class="btn mb-2 btn-primary"  href="{{ route('bayar.tambah') }}">Tambah</a>
                 <!-- table -->
+                <button class="btn btn-info" onclick="window.print()">Print</button>
                 <table class="table datatables" id="dataTable-1">
                   <thead>
                     <tr>
@@ -22,7 +22,9 @@
                       <th>Nama petugas</th>
                       <th>Nama siswa</th>
                       <th>Kelas</th>
+                      <th>bulan</th>
                       <th>Nominal</th>
+                      <th>total</th>
                       <th>status</th>
                     </tr>
                   </thead>
@@ -30,21 +32,14 @@
                     @foreach ($transaksi as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->nama_petugas }}</td>
+                        <td>{{ $item->User->name }}</td>
                         <td>{{ $item->User->name }}</td>
                         <td>{{ $item->kelas }}</td>
+                        <td>{{ $item->bulan }}</td>
                         <td>{{ $item->nominal }}</td>
+                        <td>{{ $item->nominal * $item->bulan}}</td>
                         <td>{{ $item->status_pembayaran }}</td>
-                        <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="text-muted sr-only">Action</span>
-                          </button>
-                          <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{ route('transaksi.edit', $item->id_kelas) }}">Edit</a>
-                            <form action="{{ route("transaksi.delete",["id_kelas" => $item->id_kelas])}}" method="POST" class="dropdown-item">
-                                @csrf
-                                <button type="submit">Hapus</button>
-                            </form>
-                          </div>
+                 
                         </td>
                       </tr>
                     @endforeach
