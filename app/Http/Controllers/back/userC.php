@@ -8,6 +8,7 @@ use App\Http\Requests\user\UserUpdateRequest;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class userC extends Controller
@@ -22,23 +23,33 @@ class userC extends Controller
 
     public function store(userCreateRequest $request) {
         $data = $request->validated();
-
+    $user = Auth::user();
         DB::beginTransaction();
         try {
             if ($request->hasFile('foto')) {
-                // Simpan foto baru
-                $foto = $request->file('foto');
-                $fotoName = time() . '_' . $foto->getClientOriginalName();
-                $foto->storeAs('fotoProfile', $fotoName, 'public');
-                $data['foto'] = $fotoName;
+                $checkingFile = $request->file('foto');
+                $filename = $checkingFile->getClientOriginalName();
+                $path = $checkingFile->storeAs('public/back/foto-profile',$filename);
+                $data['foto'] = $filename;
             }
+            
 
             $data['password'] = bcrypt($data['password']);
             User::create($data);
 
             DB::commit();
 
-            return redirect(route('user.index'))->with('success', ' User has been created');
+            if ($user->level === 'user') {
+            
+                return redirect(route('    user.siswa'))->with('success', 'User has been created');
+            } elseif ($user->level === 'admin') {
+                return redirect(route('user.petugas'))->with('success', 'Admin action has been completed');
+            } elseif ($user->level === 'petugas') {
+                return redirect(route('user.petugas'))->with('success', 'Petugas action has been completed');
+            } else {
+                // Default action if the level does not match any of the above
+                return redirect(route('login'))->with('success', 'Action has been completed');
+            }
         } catch (Exception $e) {
             info($e->getMessage());
             DB::rollBack();
@@ -82,7 +93,17 @@ class userC extends Controller
 
             DB::commit();
 
-            return redirect(route('user.index'))->with('success', ' User has been update');
+            if ($user->level === 'user') {
+            
+                return redirect(route('user.siswa'))->with('success', 'User has been updated');
+            } elseif ($user->level === 'admin') {
+                return redirect(route('user.petugas'))->with('success', 'Admin action has been updated');
+            } elseif ($user->level === 'petugas') {
+                return redirect(route('user.petugas'))->with('success', 'Petugas action has been updated');
+            } else {
+                // Default action if the level does not match any of the above
+                return redirect(route('login'))->with('success', 'Action has been completed');
+            }
         } catch (Exception $e) {
             info($e->getMessage());
             DB::rollBack();
