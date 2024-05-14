@@ -10,5 +10,5 @@ class Setting extends Model
     use HasFactory;
     protected $table = 'setting';
     protected $primaryKey = 'id_setting';
-    protected $fillable = ['foto_profile', 'nama_sekolah', 'alamat', 'telepon', 'website', 'npsn'];
+    protected $fillable = ['logo', 'nama_sekolah', 'alamat', 'telepon', 'website', 'npsn'];
 }

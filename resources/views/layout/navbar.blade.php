@@ -22,10 +22,18 @@
           <span class="dot dot-md bg-success"></span>
         </a>
       </li>
+      <div class="mt-3">
+        Hello, <strong>{{ Auth::user()->name }}</strong> |
+        <strong>{{ Auth::user()->level }}</strong>
+      </div>
       <li class="nav-item dropdown">
+
         <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="avatar avatar-sm mt-2">
-            <img src="./assets/avatars/face-1.jpg" alt="..." class="avatar-img rounded-circle">
+
+            <span class="avatar avatar-sm mt-2">
+            @if(Auth::user()->foto_profile)
+            <img src="{{ asset('storage/back/foto-profile/' . Auth::user()->foto_profile) }}" alt="..." class="avatar-img rounded-circle">
+            @endif
           </span>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">

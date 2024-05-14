@@ -29,7 +29,7 @@
                 <input type="text" class="form-control" name="kelas" id="kelas" placeholder="masukan Kelas">
               </div>
             <button type="submit" class="btn btn-primary">kirim</button>
-            <a href="{{route('kelas.index')}}" class="btn btn-danger">Kembali</a>
+            <a href="{{route('kelas.index')}}" class="btn btn-dangear">Kembali</a>
           </form>
         </div> <!-- /. card-body -->
       </div> <!-- /. card -->

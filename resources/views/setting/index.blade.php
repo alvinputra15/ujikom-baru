@@ -8,7 +8,7 @@
     <div class="col-md-12">
       <div class="card shadow mb-4">
         <div class="card-header">
-          <strong class="card-title">Form Edit profile</strong>
+          <strong class="card-title">Form Setting</strong>
         </div>
         @if ($errors->any())
         <div class="my-3">
@@ -25,20 +25,21 @@
             <form class="form-valide-with-icon needs-validation" action="{{route('setting.update',$setting->id_setting  )}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3 vertical-radius">
-                    <label class="text-label form-label required" for="foto_profile">foto profile</label>
+                    <label class="text-label form-label required" for="logo">foto profile</label>
                     <div class="input-group validate-username">
                         <input type="file" class="form-control br-style"
-                            id="foto_profile" name="foto_profile">
+                            id="logo" name="logo">
                     </div>
-                            @empty($setting->foto_profile)
+                            @empty($setting->logo)
                             <p>Foto Profile tidak ada</p>
                         @else
+                        <small  >Foto lama:</small>
                             <div class="mt-2" >
-                                <small  >Foto lama:</small>
-                                <img src="{{asset('storage/back/foto-profile/'.$setting->logo) }}" class="img-thumbnail img-preview" alt="Foto Pengguna" width="120px">
+
+                                <img src="{{asset('storage/back/logo/'.$setting->logo) }}" class="img-thumbnail img-preview" alt="Foto Pengguna" width="120px">
                             </div>
                         @endempty
-                            @error('foto_profile')
+                            @error('logo')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>

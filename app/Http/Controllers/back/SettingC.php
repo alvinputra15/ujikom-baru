@@ -29,24 +29,18 @@ class SettingC extends Controller
     {
         $data = $request->validate([
             'nama_sekolah' => 'nullable|min:3',
-            'foto_sekolah' => 'nullable',
+            'logo'         => 'nullable',
             'alamat'       => 'nullable|min:3',
             'telepon'      => 'nullable|min:10',
             'email'      => 'nullable|email',
             'website'      => 'nullable',
             'npsn'         => 'nullable',
         ]);
-
-        if ($request->hasFile('path_logo')) {
-            $setting = Setting::find($id_setting);
-            if ($setting->logo) {
-                Storage::delete('logo/' . $setting->logo);
-            }
-
-            $logo = $request->file('path_logo');
-            $fotoName = time() . '_' . $logo->getClientOriginalName();
-            $logo->storeAs('logo', $fotoName, 'public');
-            $data['path_logo'] = $fotoName;
+        if ($request->hasFile('logo')) {
+            $checkingFile = $request->file('logo');
+            $filename = $checkingFile->getClientOriginalName();
+            $path = $checkingFile->storeAs('public/back/logo',$filename);
+            $data['logo'] = $filename;
         }
         Setting::find($id_setting)->update($data);
 
