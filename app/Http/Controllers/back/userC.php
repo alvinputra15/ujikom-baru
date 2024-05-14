@@ -26,13 +26,13 @@ class userC extends Controller
     $user = Auth::user();
         DB::beginTransaction();
         try {
-            if ($request->hasFile('foto')) {
-                $checkingFile = $request->file('foto');
+            if ($request->hasFile('foto_profile')) {
+                $checkingFile = $request->file('foto_profile');
                 $filename = $checkingFile->getClientOriginalName();
                 $path = $checkingFile->storeAs('public/back/foto-profile',$filename);
-                $data['foto'] = $filename;
+                $data['foto_profile'] = $filename;
             }
-            
+
 
             $data['password'] = bcrypt($data['password']);
             User::create($data);
@@ -40,7 +40,7 @@ class userC extends Controller
             DB::commit();
 
             if ($user->level === 'user') {
-            
+
                 return redirect(route('    user.siswa'))->with('success', 'User has been created');
             } elseif ($user->level === 'admin') {
                 return redirect(route('user.petugas'))->with('success', 'Admin action has been completed');
@@ -78,7 +78,9 @@ class userC extends Controller
         try {
             if ($request->hasFile('foto_profile')) {
                 $checkingFile = $request->file('foto_profile');
-                $this->managementFile($checkingFile);
+                $filename = $checkingFile->getClientOriginalName();
+                $path = $checkingFile->storeAs('public/back/foto-profile',$filename);
+                $data['foto_profile'] = $filename;
             }
 
         if($request->filled('password')) {
@@ -94,7 +96,7 @@ class userC extends Controller
             DB::commit();
 
             if ($user->level === 'user') {
-            
+
                 return redirect(route('user.siswa'))->with('success', 'User has been updated');
             } elseif ($user->level === 'admin') {
                 return redirect(route('user.petugas'))->with('success', 'Admin action has been updated');
@@ -145,7 +147,9 @@ class userC extends Controller
         try {
             if ($request->hasFile('foto_profile')) {
                 $checkingFile = $request->file('foto_profile');
-                $this->managementFile($checkingFile);
+                $filename = $checkingFile->getClientOriginalName();
+                $path = $checkingFile->storeAs('public/back/foto-profile',$filename);
+                $data['foto_profile'] = $filename;
             }
 
         if($request->filled('password')) {

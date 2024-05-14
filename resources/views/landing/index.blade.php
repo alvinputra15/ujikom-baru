@@ -72,10 +72,10 @@
                         </figure>
 
                         <!--TITLE -->
-                        <h1>Welcome to the SPP payment website</h1>
+                        <h1 style="color:black">Welcome to the SPP payment website</h1>
                         <h1 class="ts-bubble-border">
                             <span class="ts-title-rotate">
-                                <span class="active">Pembayaran SPP</span>
+                                <span class="active" style="color:black">Pembayaran SPP</span>
 
                             </span>
                         </h1>
@@ -99,7 +99,7 @@
 
             <!--HERO BACKGROUND *************************************************************************************-->
             <div class="ts-background">
-                <div class="ts-background-image" data-bg-image="assets/img/bg-hero.jpg"></div>
+                <div class="ts-background-image" data-bg-image="{{ asset('landing/assets/img/payment.jpg') }}"></div>
             </div>
             <!--END HERO BACKGROUND *********************************************************************************-->
 
