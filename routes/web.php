@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/user/Spp', [dashboardC::class, 'user'])->name('users.index')->middleware('UserAkses:user');
     Route::get('/logout', [loginC::class, 'logout'])->name('logout');
 
+
     //setting
     Route::get('/setting', [SettingC::class, 'index'])->name('setting.index');
     Route::post('/setting/update/{id_setting}', [SettingC::class, 'update'])->name('setting.update');

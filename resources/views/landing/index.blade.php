@@ -72,7 +72,18 @@
                         </figure>
 
                         <!--TITLE -->
-                        <h1 style="color:black">Welcome to the SPP payment website</h1>
+                        <h1 style="color:black">Selamat datang di website
+                            @php
+                            $setting = \App\Models\Setting::first();
+                        @endphp
+
+                            <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
+                                    <h1 style="color: black">{{ optional($setting)->nama_sekolah }}</h1>
+
+                            </a>
+
+                          </h1>
+
                         <h1 class="ts-bubble-border">
                             <span class="ts-title-rotate">
                                 <span class="active" style="color:black">Pembayaran SPP</span>

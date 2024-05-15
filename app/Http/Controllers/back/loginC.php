@@ -48,6 +48,6 @@ class loginC extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('login');
+        return view('landing.index');
     }
 }
