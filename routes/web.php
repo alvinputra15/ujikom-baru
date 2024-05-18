@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\back\ajaranC;
 use App\Http\Controllers\back\dashboardC;
 use App\Http\Controllers\back\HargaC;
 use App\Http\Controllers\back\KelasC;
 use App\Http\Controllers\back\loginC;
+use App\Http\Controllers\back\metodeC;
 use App\Http\Controllers\back\SettingC;
 use App\Http\Controllers\back\TransaksiC;
 use App\Http\Controllers\back\userC;
@@ -68,6 +70,22 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/kelas/store', [KelasC::class, 'store'])->name('kelas.store');
     Route::post('/kelas/update{id_kelas}', [KelasC::class, 'update'])->name('kelas.update');
     Route::post('/kelas/delete', [KelasC::class, 'delete'])->name('kelas.delete');
+
+    //ajaran
+    Route::get('/ajaran', [ajaranC::class, 'index'])->name('ajaran.index');
+    Route::get('/ajaran/tambah', [ajaranC::class, 'create'])->name('ajaran.tambah');
+    Route::get('/ajaran/edit/{kode_ajaran}', [ajaranC::class, 'edit'])->name('ajaran.edit');
+    Route::post('/ajaran/store', [ajaranC::class, 'store'])->name('ajaran.store');
+    Route::post('/ajaran/update{kode_ajaran}', [ajaranC::class, 'update'])->name('ajaran.update');
+    Route::post('/ajaran/delete/{kode_ajaran}', [ajaranC::class, 'delete'])->name('ajaran.delete');
+
+    //metode pembayaran
+    Route::get('/pembayaran', [metodeC::class, 'index'])->name('pembayaran.index');
+    Route::get('/pembayaran/tambah', [metodeC::class, 'create'])->name('pembayaran.tambah');
+    Route::get('/pembayaran/edit/{kode_ajaran}', [metodeC::class, 'edit'])->name('pembayaran.edit');
+    Route::post('/pembayaran/store', [metodeC::class, 'store'])->name('pembayaran.store');
+    Route::post('/pembayaran/update{kode_ajaran}', [metodeC::class, 'update'])->name('pembayaran.update');
+    Route::post('/pembayaran/delete/{kode_ajaran}', [metodeC::class, 'delete'])->name('pembayaran.delete');
 
     //transaksi
     Route::get('/bayar', [TransaksiC::class, 'index'])->name('bayar.spp');

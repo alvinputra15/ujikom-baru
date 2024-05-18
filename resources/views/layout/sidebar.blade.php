@@ -23,12 +23,12 @@
             @if (auth()->user()->level != 'user')
             <li class="nav-item active">
 
-              <a class="nav-link pl-3" href="{{ route('user.petugas') }}"><span class="ml-1 item-text">Data Petugas</span></a>
+              <a class="nav-link pl-3" href="{{ route('user.petugas') }}"><span class="ml-1 item-text">Users</span></a>
             </li>
             @endif
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="nav-link pl-3" href="{{ route('user.siswa') }}"><span class="ml-1 item-text">Data siswa</span></a>
-            </li>
+            </li> --}}
             @if (auth()->user()->level != 'user')
             <li class="nav-item">
               <a class="nav-link pl-3" href="{{ route('kelas.index') }}"><span class="ml-1 item-text">Kelas</span></a>
@@ -36,6 +36,12 @@
 
             @endif
           </ul>
+          <li class="nav-item">
+            <a href="{{route('pembayaran.index')}}" class=" nav-link">
+              <i class="fe fe-dolars fe-16"></i>
+              <span class="ml-3 item-text">Metode Pembayaran</span><span class="sr-only"></span>
+            </a>
+            </li>
           @if (auth()->user()->level != 'user')
           <li class="nav-item">
             <a href="{{route('spp.index')}}" class=" nav-link">
@@ -60,6 +66,12 @@
                 </li>
 
               @endif
+              <li class="nav-item">
+                <a href="{{route('ajaran.index')}}" class=" nav-link">
+                  <i class="fe fe-dolars fe-16"></i>
+                  <span class="ml-3 item-text">Ajaran</span><span class="sr-only"></span>
+                </a>
+                </li>
               <li class="nav-item">
                 <a href="{{route('setting.index')}}" class=" nav-link">
                   <i class="fe fe-dolars fe-16"></i>

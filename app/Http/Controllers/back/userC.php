@@ -120,15 +120,15 @@ class userC extends Controller
     }
 
 
-    public function siswa(){
-        $user = User::where('level', 'user')->get();
-        return view('siswa.index', [
-            'user'  => $user
-        ]);
-    }
+    // public function siswa(){
+    //     $user = User::where('level', 'user')->get();
+    //     return view('siswa.index', [
+    //         'user'  => $user
+    //     ]);
+    // }
 
     public function petugas(){
-        $user = User::whereIn('level', ['admin', 'petugas'])->get();
+        $user = User::whereIn('level', ['admin', 'petugas','user'])->get();
         return view ('petugas.index', [
             'user'  => $user
         ]);
@@ -190,4 +190,6 @@ class userC extends Controller
         }
         return response()->json(['error' => 'User not found.']);
     }
+
+
 }
