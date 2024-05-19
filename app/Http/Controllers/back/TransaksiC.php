@@ -19,14 +19,34 @@ use Illuminate\Support\Facades\Redirect;
 
 class TransaksiC extends Controller
 {
-    public function index(){
-        $transaksi = Transaksi::with(['User', 'Kelas', 'Ajaran', 'Metode'])->get();
+    public function index(Request $request) {
+        // Retrieve all 'Ajaran' records
+        $ajaran = Ajaran::all();
         
-        return view('transaksi.index',[
-            'transaksi' => $transaksi
+        // Get the selected category from the request
+        $selectedCategory = $request->input('tahun_ajaran');
+    
+        // Initialize the query for Transaksi
+        $query = Transaksi::with(['User', 'Kelas', 'Ajaran', 'Metode']);
+    
+        // Apply the filter if a category is selected
+        if ($selectedCategory) {
+            $query->whereHas('ajaran', function ($query) use ($selectedCategory) {
+                $query->where('tahun_ajaran', $selectedCategory);
+            });
+        }
+    
+        // Retrieve the filtered results
+        $transaksi = $query->get();
+    
+        // Return the view with the filtered data
+        return view('transaksi.index', [
+            'transaksi' => $transaksi,
+            'ajaran' => $ajaran,
+            'selectedCategory' => $selectedCategory
         ]);
-        
     }
+    
 
     public function create(){
         $levelUser     = User::where('level', 'user')->get();

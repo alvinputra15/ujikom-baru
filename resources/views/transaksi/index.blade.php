@@ -13,7 +13,22 @@
           <div class="col-md-12">
             <div class="card shadow">
               <div class="card-body">
-                <a  class="btn mb-2 btn-primary"  href="{{ route('bayar.tambah') }}">Tambah</a>
+                
+    
+
+                <form action="{{ route('bayar.spp') }}" method="GET">
+                  <h4>Filter data bayar spp tahun ajaran</h4>
+                  <select name="tahun_ajaran" onchange="this.form.submit()" class="form-control mb-2" style="width:268px">
+                      <option value="">All</option>
+                      @foreach ($ajaran as $item)
+                          <option value="{{ $item->tahun_ajaran }}" @if ($selectedCategory == $item->tahun_ajaran) selected @endif>
+                              {{ $item->tahun_ajaran }}
+                          </option>
+                      @endforeach
+                  </select>
+              </form>
+              
+                  <a  class="btn mb-2 btn-primary"  href="{{ route('bayar.tambah') }}">Tambah</a>
                 <!-- table -->
                 <table class="table datatables" id="dataTable-1">
                   <thead>
