@@ -22,8 +22,13 @@ class bayarrequest extends FormRequest
     public function rules(): array
     {
         return [
-            'kelas'        => 'required',
-            'nominal'      => 'required',
+            'user_id' => 'required', 
+            'ajaran_kode' => 'required', 
+            'metode_kode' => 'required', 
+            'tanggal_transaksi' => 'required', 
+            'bulan' => 'required',
+            'kelas_id' => 'required',
+            'nominal' => 'required',
         ];
     }
 }

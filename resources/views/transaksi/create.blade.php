@@ -23,6 +23,21 @@
         <div class="card-body">
             <form class="form-valide-with-icon needs-validation" action="{{route('bayar.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="kelas">kode transaksi</label>
+                    <?php
+                     $kodeTransaksi = autonumber('transaksi','kode_transaksi',3, 'TKS');
+                    ?>
+                    <input type="text" class="form-control" name="kode_transaksi" readonly id="kode_transaksi" value="<?= $kodeTransaksi ?>">
+                  </div>
+                  </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="tanggal_transaksi">Tanggal Transaksi</label>
+                    <input type="date" class="form-control" name="tanggal_transaksi" id="tanggal_transaksi" >
+                  </div>
+                  </div>
             <div class="form-row">
               <div class="form-group col-md-12">
                 <label for="user_id">Nama siswa</label>
@@ -35,6 +50,8 @@
               </div>
               <hr>
               <div id="user-info">
+                <p class="col-12">nis: <span id="nis"></span></p>
+                <hr>
                 <p class="col-12">telepon: <span id="telepon"></span></p>
                 <hr>
                 <p class="col-12">email: <span id="email"></span></p>
@@ -42,21 +59,10 @@
                 <p class="col-12">alamat: <span id="alamat"></span></p>
             </div>
               </div>
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label for="petugas_id">Nama Petugas</label>
-                  <select name="petugas_id" id="" class="form-control">
-                      <option value="" selected disabled hidden>Pilih Petugas</option>
-                      @foreach ($levelPetugas as $item)
-                      <option value="{{$item->id}}">{{$item->name}}</option>
-                  @endforeach
-                  </select>
-                </div>
-                </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                      <label for="kelas">Kelas</label>
-                      <select name="kelas" id="kelas" class="form-control">
+                      <label for="kelas_id">Kelas</label>
+                      <select name="kelas_id" id="kelas_id" class="form-control">
                         <option value="" selected disabled hidden>Pilih Kelas</option>
                         @foreach ($kelas as $item)
                         <option value="{{$item->id_kelas}}">{{$item->kelas}}</option>
@@ -64,6 +70,28 @@
                       </select>
                     </div>
                     </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-12">
+                        <label for="ajaran_kode">ajaran</label>
+                        <select name="ajaran_kode" id="ajaran_kode" class="form-control">
+                          <option value="" selected disabled hidden>Pilih Tahun ajaran</option>
+                          @foreach ($ajaran as $item)
+                          <option value="{{$item->kode_ajaran}}">{{$item->tahun_ajaran}}</option>
+                      @endforeach
+                        </select>
+                      </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <label for="metode_kode">metode pembayaran</label>
+                          <select name="metode_kode" id="metode_kode" class="form-control">
+                            <option value="" selected disabled hidden>Pilih Tahun metode</option>
+                            @foreach ($metode as $item)
+                            <option value="{{$item->kode_metode}}">{{$item->metode_pembayaran}}</option>
+                        @endforeach
+                          </select>
+                        </div>
+                        </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
                           <label for="bulan">Bulan</label>
@@ -91,7 +119,7 @@
                         </div>
                         </div>
             <button type="submit" class="btn btn-primary">kirim</button>
-            <a href="{{route('kelas.index')}}" class="btn btn-danger">Kembali</a>
+            <a href="{{route('bayar.spp')}}" class="btn btn-danger">Kembali</a>
           </form>
         </div> <!-- /. card-body -->
       </div> <!-- /. card -->
@@ -108,6 +136,7 @@
                     url:"/get-user-info/"+userId, // Update with correct URL
                     success:function(response){
                         if(response){
+                            $('#nis').text(response.nis);
                             $('#telepon').text(response.telepon);
                             $('#email').text(response.email);
                             $('#alamat').text(response.alamat);

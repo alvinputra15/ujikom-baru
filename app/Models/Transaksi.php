@@ -10,9 +10,11 @@ class Transaksi extends Model
 {
     use HasFactory;
     protected $table      = 'transaksi';
-    protected $primaryKey = 'id_transaksi';
-    protected $fillable   = ['user_id', 'petugas_id', 'bulan','kelas',
-    'nominal', 'status_bayar'];
+    protected $primaryKey = 'kode_transaksi';
+    protected $keyType     = 'string';
+    public $incrementing = false;
+    protected $fillable   = ['kode_transaksi','user_id', 'tanggal_transaksi', 'ajaran_kode', 'metode_kode', 
+    'bulan','kelas_id', 'nominal', 'status_bayar'];
     public static function total()
     {
         // Menggunakan metode all() untuk mengambil semua transaksi
@@ -30,4 +32,8 @@ class Transaksi extends Model
     }
 
     public function User(): BelongsTo{return $this->belongsTo(User::class, 'user_id', 'id');}
+    public function Kelas(): BelongsTo{return $this->belongsTo(Kelas::class, 'kelas_id', 'id_kelas');}
+
+    public function Metode(): BelongsTo{return $this->belongsTo(Metode::class, 'metode_kode', 'kode_metode');}
+    public function Ajaran(): BelongsTo{return $this->belongsTo(Ajaran::class, 'ajaran_kode', 'kode_ajaran');}
 }

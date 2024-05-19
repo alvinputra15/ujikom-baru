@@ -6,18 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Ajaran extends Model
+class Metode extends Model
 {
     use HasFactory;
-    protected $table      = 'ajarans';
-    protected $primaryKey      = 'kode_ajaran';
+    protected $table      = 'metode';
+    protected $primaryKey = 'kode_metode';
     protected $keyType     = 'string';
     public $incrementing = false;
-    protected $fillable     = [
-        'kode_ajaran',
-        'tahun_ajaran'
-    ];
+    protected $fillable   = ['kode_metode', 'metode_pembayaran'];
     public function Transaksi(): HasMany{
-        return $this->hasMany(Transaksi::class, 'ajaran_kode', 'kode_ajaran');
+        return $this->hasMany(Transaksi::class, 'metode_kode', 'kode_metode');
      }
 }

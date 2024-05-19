@@ -3,6 +3,7 @@
 @section('title', 'transaksi')
 @include('layout.navbar')
 @include('layout.sidebar')
+
 <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12">
@@ -15,44 +16,48 @@
               <div class="card-body">
                 <div class="text-center">
                     <h1 class=" text-success">Pembayaran Spp Sukses</h1>
+                    <button class="print btn btn-info float-right" onclick="window.print()">print</button>
                 <p class="text-muted font-14">
                     Terimakasih telah melakukan pembayaran  
                 </p>
                 <h3>Detail pembayaran:</h3>
-                <table class="table datatables" id="dataTable-1">
+                <table class="table datatables" >
                     <thead>
                       <tr>
                         <th>Nama siswa</th>
                         <th>Kelas</th>
+                        <th>tahun ajaran</th>
+                        <th>metode pembayaran</th>
                         <th>bulan</th>
                         <th>Nominal</th>
-                        <th>Total</th>
                         <th>status</th>
-                        <th>Didata oleh</th>
-                        <th>Tanggal</th>
+                        <th>Tanggal transaksi</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                           <td>{{ $user->name }}</td>
-                          <td>{{ $transaksi->kelas }}</td>
+                          <td>{{ $kelas->kelas }}</td>
+                          <td>{{ $ajaran->tahun_ajaran }}</td>
+                          <td>{{ $metode->metode_pembayaran }}</td>
                           <td>{{ $transaksi->bulan }} bulan</td>
-                          <td>{{ $transaksi->nominal }}</td>
-                          <td>{{ $transaksi->nominal * $transaksi->bulan}}</td>
-                    
+                          <td>Rp{{ number_format($transaksi->nominal , 2,',' , '.')}}</td>
                           <td>{{ $transaksi->status_pembayaran }}</td>
-                          <td>{{ $petugas->name }}</td>
-                          <td>{{ $petugas->created_at }}</td>
-                    
+                          <td>{{ $transaksi->tanggal_transaksi }}</td>
                               </form>
                             </div>
-                          </td>
+                          </td>  
                         </tr>
   
                     </tbody>
                   </table>
-                <a href="{{route('bayar.spp')}}" class="btn btn-primary">Lihat transaksi</a>
+                  <div class="float-right">
+                    <h6>Di data oleh: {{Auth::user()->name}}</h6>
+                    <h6>Total: Rp{{ number_format($transaksi->nominal * $transaksi->bulan, 2 ,',', '.')}}</h6>
+                  </div>
+            
                 </div>
+                <a href="{{route('bayar.spp')}}" class="btn btn-primary mt-4">Lihat transaksi</a>
               </div>
             </div>
           </div> <!-- simple table -->

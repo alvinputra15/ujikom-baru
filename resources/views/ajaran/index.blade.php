@@ -1,6 +1,6 @@
 @extends('layout.tamplate')
 @section('content')
-@section('title', 'kelas')
+@section('title', 'ajaran')
 @include('layout.navbar')
 @include('layout.sidebar')
 <div class="container-fluid">

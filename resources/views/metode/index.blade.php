@@ -1,6 +1,6 @@
 @extends('layout.tamplate')
 @section('content')
-@section('title', 'transaksi')
+@section('title', 'metode')
 @include('layout.navbar')
 @include('layout.sidebar')
 <div class="container-fluid">
@@ -13,36 +13,31 @@
           <div class="col-md-12">
             <div class="card shadow">
               <div class="card-body">
-                <a  class="btn mb-2 btn-primary"  href="{{ route('bayar.tambah') }}">Tambah</a>
+                <a  class="btn mb-2 btn-primary"  href="{{ route('metode.tambah') }}">Tambah</a>
                 <!-- table -->
                 <table class="table datatables" id="dataTable-1">
                   <thead>
                     <tr>
-                      <th>No</th>
-                      <th>Nama siswa</th>
-                      <th>Tanggal transaksi</th>
-                      <th>Kelas</th>
-                      <th>Tahun ajaran</th>
+                      <th>kode metode pembayaran</th>
                       <th>metode pembayaran</th>
-                      <th>bulan</th>
-                      <th>Nominal</th>
-                      <th>total</th>
-                      <th>status</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($transaksi as $item)
+                    @foreach ($metode as $item)
                     <tr>
-                      <td>{{ $loop->iteration }}</td>
-                      <td>{{ $item->User->name }}</td>
-                      <td>{{ $item->tanggal_transaksi }}</td>
-                      <td>{{ $item->Kelas->kelas }}</td>
-                      <td>{{ $item->Ajaran->tahun_ajaran }}</td>
-                      <td>{{ $item->Metode->metode_pembayaran }}</td>
-                      <td>{{ $item->bulan }}</td>
-                      <td>{{ $item->nominal }}</td>
-                      <td>{{ $item->nominal * $item->bulan}}</td>
-                      <td>{{ $item->status_pembayaran }}</td>
+                        <td>{{ $item->kode_metode}}</td>
+                        <td>{{ $item->metode_pembayaran }}</td>
+                        <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="text-muted sr-only">Action</span>
+                          </button>
+                          <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="{{ route('metode.edit', $item->kode_metode) }}">Edit</a>
+                            <form action="{{ route("metode.delete",["kode_metode" => $item->kode_metode])}}" method="POST" class="dropdown-item">
+                                @csrf
+                                <button type="submit">Hapus</button>
+                            </form>
+                          </div>
+                        </td>
                       </tr>
                     @endforeach
 

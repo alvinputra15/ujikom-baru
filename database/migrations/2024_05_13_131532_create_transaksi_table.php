@@ -12,13 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transaksi', function (Blueprint $table) {
-            $table->id('id_transaksi');
+            $table->string('kode_transaksi')->primary();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('petugas_id');
+            $table->string('ajaran_kode', 6);
+            $table->string('metode_kode');
+            $table->unsignedBigInteger('kelas_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('petugas_id')->references('id')->on('users');
+            $table->foreign('ajaran_kode')->references('kode_ajaran')->on('ajarans');
+            $table->foreign('metode_kode')->references('kode_metode')->on('metode');
+            $table->foreign('kelas_id')->references('id_kelas')->on('kelas');
+            $table->date('tanggal_transaksi');
             $table->tinyInteger('bulan');
-            $table->string('kelas');
             $table->integer('nominal');
             $table->enum('status_pembayaran',['lunas'])->default('lunas');
             $table->timestamps();

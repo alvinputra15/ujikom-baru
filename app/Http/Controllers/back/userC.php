@@ -183,6 +183,7 @@ class userC extends Controller
         $user = User::find($id);
         if($user){
             return response()->json([
+                'nis' => $user->nis,
                 'telepon' => $user->telepon,
                 'email' => $user->email,
                 'alamat' => $user->alamat,

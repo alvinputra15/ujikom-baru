@@ -11,6 +11,7 @@ use App\Http\Controllers\back\TransaksiC;
 use App\Http\Controllers\back\userC;
 use App\Http\Controllers\SesiC;
 use App\Http\Middleware\UserAkses;
+use App\Models\Metode;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
@@ -79,6 +80,14 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/ajaran/update{kode_ajaran}', [ajaranC::class, 'update'])->name('ajaran.update');
     Route::post('/ajaran/delete/{kode_ajaran}', [ajaranC::class, 'delete'])->name('ajaran.delete');
 
+    //Metode
+    Route::get('/metode', [metodeC::class, 'index'])->name('metode.index');
+    Route::get('/metode/tambah', [metodeC::class, 'create'])->name('metode.tambah');
+    Route::get('/metode/edit/{kode_metode}', [metodeC::class, 'edit'])->name('metode.edit');
+    Route::post('/metode/store', [metodeC::class, 'store'])->name('metode.store');
+    Route::post('/metode/update{kode_metode}', [metodeC::class, 'update'])->name('metode.update');
+    Route::post('/metode/delete/{kode_metode}', [metodeC::class, 'delete'])->name('metode.delete');
+
     //metode pembayaran
     Route::get('/pembayaran', [metodeC::class, 'index'])->name('pembayaran.index');
     Route::get('/pembayaran/tambah', [metodeC::class, 'create'])->name('pembayaran.tambah');
@@ -92,10 +101,10 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/bayar/history', [TransaksiC::class, 'history'])->name('history.spp')->middleware('auth');
 
     Route::get('/bayar/tambah', [TransaksiC::class, 'create'])->name('bayar.tambah');
-    Route::get('/bayar/update/{id_transaksi}', [TransaksiC::class, 'update'])->name('bayar.update');
-    Route::get('/bayar/sukses/{id_transaksi}', [TransaksiC::class, 'sukses'])->name('transaksi.sukses');
+    Route::get('/bayar/update/{kode_transaksi}', [TransaksiC::class, 'update'])->name('bayar.update');
+    Route::get('/bayar/sukses/{kode_transaksi}', [TransaksiC::class, 'sukses'])->name('transaksi.sukses');
     Route::post('/bayar/store', [TransaksiC::class, 'store'])->name('bayar.store');
-    Route::post('/bayar/update/{id_transaksi}', [TransaksiC::class, 'update'])->name('bayar.update');
+    Route::post('/bayar/update/{kode_transaksi}', [TransaksiC::class, 'update'])->name('bayar.update');
     Route::get('/get-user-info/{id}', [userC::class,'getUserInfo'])->name('get.user.info');
 
 });
