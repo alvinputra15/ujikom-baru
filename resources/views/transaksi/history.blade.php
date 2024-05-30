@@ -22,7 +22,8 @@
                       <th>Nama petugas</th>
                       <th>Nama siswa</th>
                       <th>Kelas</th>
-                      <th>bulan</th>
+                      {{-- <th>bulan</th> --}}
+                      <th>spp bulan</th>
                       <th>Nominal</th>
                       <th>total</th>
                       <th>status</th>
@@ -34,12 +35,12 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->User->name }}</td>
                         <td>{{ $item->User->name }}</td>
-                        <td>{{ $item->kelas }}</td>
+                        <td>{{ $item->Kelas->kelas }}</td>
                         <td>{{ $item->bulan }}</td>
                         <td>{{ $item->nominal }}</td>
                         <td>{{ $item->nominal * $item->bulan}}</td>
                         <td>{{ $item->status_pembayaran }}</td>
-                 
+
                         </td>
                       </tr>
                     @endforeach

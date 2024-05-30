@@ -13,8 +13,8 @@
           <div class="col-md-12">
             <div class="card shadow">
               <div class="card-body">
-                
-    
+
+
 
                 <form action="{{ route('bayar.spp') }}" method="GET">
                   <h4>Filter data bayar spp tahun ajaran</h4>
@@ -27,7 +27,7 @@
                       @endforeach
                   </select>
               </form>
-              
+
                   <a  class="btn mb-2 btn-primary"  href="{{ route('bayar.tambah') }}">Tambah</a>
                 <!-- table -->
                 <table class="table datatables" id="dataTable-1">
@@ -35,11 +35,12 @@
                     <tr>
                       <th>No</th>
                       <th>Nama siswa</th>
+                      {{-- <th>bulan</th> --}}
                       <th>Tanggal transaksi</th>
                       <th>Kelas</th>
                       <th>Tahun ajaran</th>
                       <th>metode pembayaran</th>
-                      <th>bulan</th>
+                      <th>spp bulan</th>
                       <th>Nominal</th>
                       <th>total</th>
                       <th>status</th>
@@ -50,6 +51,7 @@
                     <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ $item->User->name }}</td>
+                      {{-- <td>{{ $item->bulan1 }}</td> --}}
                       <td>{{ $item->tanggal_transaksi }}</td>
                       <td>{{ $item->Kelas->kelas }}</td>
                       <td>{{ $item->Ajaran->tahun_ajaran }}</td>

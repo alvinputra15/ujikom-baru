@@ -22,23 +22,23 @@ class TransaksiC extends Controller
     public function index(Request $request) {
         // Retrieve all 'Ajaran' records
         $ajaran = Ajaran::all();
-        
+
         // Get the selected category from the request
         $selectedCategory = $request->input('tahun_ajaran');
-    
+
         // Initialize the query for Transaksi
         $query = Transaksi::with(['User', 'Kelas', 'Ajaran', 'Metode']);
-    
+
         // Apply the filter if a category is selected
         if ($selectedCategory) {
             $query->whereHas('ajaran', function ($query) use ($selectedCategory) {
                 $query->where('tahun_ajaran', $selectedCategory);
             });
         }
-    
+
         // Retrieve the filtered results
         $transaksi = $query->get();
-    
+
         // Return the view with the filtered data
         return view('transaksi.index', [
             'transaksi' => $transaksi,
@@ -46,7 +46,7 @@ class TransaksiC extends Controller
             'selectedCategory' => $selectedCategory
         ]);
     }
-    
+
 
     public function create(){
         $levelUser     = User::where('level', 'user')->get();
@@ -66,11 +66,11 @@ class TransaksiC extends Controller
     public function store(Request $request){
         $validator = Validator::make($request->all(),[
             'kode_transaksi' => 'required',
-            'user_id' => 'required', 
-            'ajaran_kode' => 'required', 
-            'metode_kode' => 'required', 
+            'user_id' => 'required',
+            'ajaran_kode' => 'required',
+            'metode_kode' => 'required',
             'kelas_id' => 'required',
-            'tanggal_transaksi' => 'required', 
+            'tanggal_transaksi' => 'required',
             'bulan' => 'required',
             'nominal' => 'required',
         ]);
@@ -95,7 +95,7 @@ class TransaksiC extends Controller
             $transaksi->tanggal_transaksi = $request->tanggal_transaksi;
             $transaksi->bulan = $request->bulan;
             $transaksi->nominal = $request->nominal;
-            
+
             $transaksi->save();
             DB::commit();
 
@@ -136,12 +136,12 @@ class TransaksiC extends Controller
     public function history()
     {
 $user = Auth::user(); // Get the currently authenticated user
- 
+
 $transaksi = Transaksi::with('user')
                       ->where('user_id', $user->id)
                       ->orderBy('created_at', 'DESC')
                       ->get();
-        
+
             return view('transaksi.history', [
                 'transaksi' => $transaksi
             ]);

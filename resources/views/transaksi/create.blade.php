@@ -97,6 +97,27 @@
                           <label for="bulan">Bulan</label>
                           <select name="bulan" id="" class="form-control">
                             <option value="" selected disabled hidden></option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">Maret</option>
+                            <option value="4">April</option>
+                            <option value="5">Mei</option>
+                            <option value="6">Juni</option>
+                            <option value="7">July</option>
+                            <option value="8">Agustus</option>
+                            <option value="9">September</option>
+                            <option value="9">Septemb</option>
+                            <option value="10">Oktobr</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                          </select>
+                        </div>
+                        </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <label for="bulan">SPP Bulan</label>
+                          <select name="bulan" id="" class="form-control">
+                            <option value="" selected disabled hidden></option>
                             <option value="1">1 bulan</option>
                             <option value="2">2 bulan</option>
                             <option value="3">3 bulan</option>
@@ -129,11 +150,11 @@
   <script>
     $(document).ready(function(){
         $('#nama_siswa').change(function(){
-            var userId = $(this).val();
-            if(userId){
+            var id = $(this).val();
+            if(id){
                 $.ajax({
                     type:"GET",
-                    url:"/get-user-info/"+userId, // Update with correct URL
+                    url:"/get-user-info/"+id, // Update with correct URL
                     success:function(response){
                         if(response){
                             $('#nis').text(response.nis);

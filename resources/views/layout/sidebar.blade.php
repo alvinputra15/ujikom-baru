@@ -13,7 +13,9 @@
          <img src="{{ asset('storage/back/logo/'. optional($setting)->logo) }}" alt="logo" width="50px" class="rounded-circle">
         </a>
       </div>
+
       <ul class="navbar-nav flex-fill w-100 mb-2">
+
         <li class="nav-item dropdown">
           <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
             <i class="fe fe-users fe-16"></i>
@@ -36,12 +38,15 @@
 
             @endif
           </ul>
+
+          @if (auth()->user()->level != 'user')
           <li class="nav-item">
             <a href="{{route('pembayaran.index')}}" class=" nav-link">
               <i class="fe fe-dolars fe-16"></i>
               <span class="ml-3 item-text">Metode Pembayaran</span><span class="sr-only"></span>
             </a>
             </li>
+            @endif
           @if (auth()->user()->level != 'user')
           <li class="nav-item">
             <a href="{{route('spp.index')}}" class=" nav-link">
@@ -66,18 +71,21 @@
                 </li>
 
               @endif
+              @if (auth()->user()->level !== 'user')
               <li class="nav-item">
                 <a href="{{route('ajaran.index')}}" class=" nav-link">
                   <i class="fe fe-dolars fe-16"></i>
                   <span class="ml-3 item-text">Ajaran</span><span class="sr-only"></span>
                 </a>
                 </li>
+
               <li class="nav-item">
                 <a href="{{route('setting.index')}}" class=" nav-link">
                   <i class="fe fe-dolars fe-16"></i>
                   <span class="ml-3 item-text">Setting</span><span class="sr-only"></span>
                 </a>
                 </li>
+                @endif
         </li>
 
       </ul>
