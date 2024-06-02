@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -24,6 +25,9 @@ class User extends Authenticatable
         'email',
         'alamat',
         'telepon',
+        'ajaran_kode',
+        'kelas_kode',
+        'tingkat_kode',
         'level',
         'foto_profile',
         'password',
@@ -60,6 +64,10 @@ class User extends Authenticatable
     }
 
     public function Transaksi(): HasMany{
-        return $this->hasMany(Transaksi::class, 'user_id', 'id');
-     }
+        return $this->hasMany(Transaksi::class, 'user_id', 'id');}
+        public function Kelas(): BelongsTo{return $this->belongsTo(Kelas::class, 'kelas_id', 'id_kelas');}
+
+        public function Tingkat(): BelongsTo{return $this->belongsTo(Tingkat::class, 'tingkat_kode', 'kode_tingkat');}
+        public function Ajaran(): BelongsTo{return $this->belongsTo(Ajaran::class, 'ajaran_kode', 'kode_ajaran');}
+
 }

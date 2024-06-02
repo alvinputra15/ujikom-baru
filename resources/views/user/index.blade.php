@@ -23,6 +23,9 @@
                       <th>Email</th>
                       <th>Alamat</th>
                       <th>Telepon</th>
+                      <th>Tahun ajaran</th>
+                      <th>Tingkat</th>
+                      <th>Kelas</th>
                       <th>Level</th>
                       <th>Action</th>
                     </tr>
@@ -34,6 +37,9 @@
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->alamat }}</td>
+                        <td>{{ $item->Ajaran->tahun_ajaran }}</td>
+                        <td>{{ $item->tingkat }}</td>
+                        <td>{{ $item->kelas }}</td>
                         <td>{{ $item->telepon }}</td>
                         <td>{{ $item->level }}</td>
                         <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

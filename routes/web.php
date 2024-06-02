@@ -7,6 +7,7 @@ use App\Http\Controllers\back\KelasC;
 use App\Http\Controllers\back\loginC;
 use App\Http\Controllers\back\metodeC;
 use App\Http\Controllers\back\SettingC;
+use App\Http\Controllers\back\tingkatC;
 use App\Http\Controllers\back\TransaksiC;
 use App\Http\Controllers\back\userC;
 use App\Http\Controllers\SesiC;
@@ -79,6 +80,16 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/ajaran/store', [ajaranC::class, 'store'])->name('ajaran.store');
     Route::post('/ajaran/update{kode_ajaran}', [ajaranC::class, 'update'])->name('ajaran.update');
     Route::post('/ajaran/delete/{kode_ajaran}', [ajaranC::class, 'delete'])->name('ajaran.delete');
+
+    //tingkat
+    Route::get('/tingkat', [tingkatC::class, 'index'])->name('tingkat.index');
+    Route::get('/tingkat/tambah', [tingkatC::class, 'create'])->name('tingkat.tambah');
+    Route::get('/tingkat/edit/{kode_tingkat}', [tingkatC::class, 'edit'])->name('tingkat.edit');
+    Route::post('/tingkat/store', [tingkatC::class, 'store'])->name('tingkat.store');
+    Route::post('/tingkat/update{kode_tingkat}', [tingkatC::class, 'update'])->name('tingkat.update');
+    Route::post('/tingkat/delete/{kode_tingkat}', [tingkatC::class, 'delete'])->name('tingkat.delete');
+
+
 
     //Metode
     Route::get('/metode', [metodeC::class, 'index'])->name('metode.index');

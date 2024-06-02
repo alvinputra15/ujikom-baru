@@ -80,6 +80,39 @@
                 <label for="inputPassword4">Telepon</label>
                 <input type="number" class="form-control" name="telepon" id="inputPassword5" placeholder="masukan nomor telpon">
               </div>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="kelas_id">Kelas</label>
+                  <select name="kelas_id" id="kelas_id" class="form-control">
+                    <option value="" selected disabled hidden>Pilih Kelas</option>
+                    @foreach ($kelas as $item)
+                    <option value="{{$item->id_kelas}}">{{$item->kelas}}</option>
+                @endforeach
+                  </select>
+                </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="ajaran_kode">ajaran</label>
+                    <select name="ajaran_kode" id="ajaran_kode" class="form-control">
+                      <option value="" selected disabled hidden>Pilih Tahun ajaran</option>
+                      @foreach ($ajaran as $item)
+                      <option value="{{$item->kode_ajaran}}">{{$item->tahun_ajaran}}</option>
+                  @endforeach
+                    </select>
+                  </div>
+                  </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="tingkat_kode">Tingkat</label>
+                    <select name="tingkat_kode" id="tingkat_kode" class="form-control">
+                      <option value="" selected disabled hidden>Pilih Tingkat</option>
+                      @foreach ($tingkat as $item)
+                      <option value="{{$item->kode_tingkat}}">{{$item->tingkat}}</option>
+                  @endforeach
+                    </select>
+                  </div>
+                  </div>
               <div class="form-group col-md-12">
                 <label for="inputState">Level</label>
                 <select id="inputState5" name="level" class="form-control">

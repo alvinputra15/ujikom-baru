@@ -19,6 +19,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->text('alamat')->nullable();
             $table->string('telepon', 12)->nullable();
+            $table->string('ajaran_kode')->index();
+            $table->string('tingkat_kode')->index();
+            $table->string('kelas_kode')->index();
             $table->enum('level',['petugas','user','admin'])->default('user');
             $table->string('foto_profile',100)->nullable();
             $table->string('password',100);

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\back;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\user\userCreateRequest;
 use App\Http\Requests\user\UserUpdateRequest;
+use App\Models\Ajaran;
+use App\Models\Kelas;
+use App\Models\Tingkat;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -16,13 +19,31 @@ class userC extends Controller
     public function index(){
         $user = User::get();
         return view('user.index', compact('user'));
+
+        // Initialize the query for Transaksi
+        $query = User::with(['Tingkat', 'Kelas', 'Ajaran']);
     }
-    public function create(Request $request){
-        return view('user.create');
+    public function create(){
+
+        $kelas         = Kelas::where('status', 1)->get();
+        $ajaran        = Ajaran::get();
+        $tingkat       = Tingkat::get();
+
+        return view('user.create', [
+
+            'kelas'         => $kelas,
+            'ajaran'        => $ajaran,
+            'tingkat'        => $tingkat,
+
+        ]);
+
+
     }
 
     public function store(userCreateRequest $request) {
         $data = $request->validated();
+
+
     $user = Auth::user();
         DB::beginTransaction();
         try {
@@ -32,7 +53,6 @@ class userC extends Controller
                 $path = $checkingFile->storeAs('public/back/foto-profile',$filename);
                 $data['foto_profile'] = $filename;
             }
-
 
             $data['password'] = bcrypt($data['password']);
             User::create($data);

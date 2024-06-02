@@ -135,15 +135,20 @@ class TransaksiC extends Controller
 
     public function history()
     {
-$user = Auth::user(); // Get the currently authenticated user
+        $user = Auth::user(); // Get the currently authenticated user
 
-$transaksi = Transaksi::with('user')
-                      ->where('user_id', $user->id)
-                      ->orderBy('created_at', 'DESC')
-                      ->get();
+        $transaksi = Transaksi::with('user')
+                              ->where('user_id', $user->id)
+                              ->orderBy('created_at', 'DESC')
+                              ->get();
 
-            return view('transaksi.history', [
-                'transaksi' => $transaksi
-            ]);
+        // Assuming $ajaran is retrieved from your database or some other source
+        $ajaran = Ajaran::all(); // Replace YourModel with your actual model name
+
+        return view('transaksi.history', [
+            'transaksi' => $transaksi,
+            'ajaran' => $ajaran, // Pass $ajaran variable to the view
+        ]);
     }
+
 }

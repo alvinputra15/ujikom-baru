@@ -14,11 +14,12 @@
           <div class="col-md-12">
             <div class="card shadow">
               <div class="card-body">
+                
                 <div class="text-center">
                     <h1 class=" text-success">Pembayaran Spp Sukses</h1>
                     <button class="print btn btn-info float-right" onclick="window.print()">print</button>
                 <p class="text-muted font-14">
-                    Terimakasih telah melakukan pembayaran  
+                    Terimakasih telah melakukan pembayaran
                 </p>
                 <h3>Detail pembayaran:</h3>
                 <table class="table datatables" >
@@ -46,16 +47,16 @@
                           <td>{{ $transaksi->tanggal_transaksi }}</td>
                               </form>
                             </div>
-                          </td>  
+                          </td>
                         </tr>
-  
+
                     </tbody>
                   </table>
                   <div class="float-right">
                     <h6>Di data oleh: {{Auth::user()->name}}</h6>
                     <h6>Total: Rp{{ number_format($transaksi->nominal * $transaksi->bulan, 2 ,',', '.')}}</h6>
                   </div>
-            
+
                 </div>
                 <a href="{{route('bayar.spp')}}" class="btn btn-primary mt-4">Lihat transaksi</a>
               </div>

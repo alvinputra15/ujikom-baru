@@ -18,8 +18,11 @@
 
         <li class="nav-item dropdown">
           <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+
             <i class="fe fe-users fe-16"></i>
+
             <span class="ml-3 item-text">Users</span><span class="sr-only">(current)</span>
+
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="dashboard">
             @if (auth()->user()->level != 'user')
@@ -37,7 +40,14 @@
             </li>
 
             @endif
+            @if (auth()->user()->level != 'user')
+            <li class="nav-item">
+              <a class="nav-link pl-3" href="{{ route('tingkat.index') }}"><span class="ml-1 item-text">Tingkat</span></a>
+            </li>
+
+            @endif
           </ul>
+
 
           @if (auth()->user()->level != 'user')
           <li class="nav-item">
